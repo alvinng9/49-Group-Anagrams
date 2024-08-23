@@ -8,24 +8,33 @@ import java.util.Map;
 public class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
         List<List<String>> result = new ArrayList();
+        //create a map of string key and string array list value
         HashMap<String, ArrayList<String>> map = new HashMap<>();
-        for (String here : strs) {
+        //iterate through the given string array
+        for (String str : strs) {
+            //create an alphabet array to count letters of each string
             int[] alpha = new int[26];
-            for (int i = 0; i < here.length(); i++) {
-                alpha[here.charAt(i) - 97]++;
+            for (int i = 0; i < str.length(); i++) {
+                alpha[str.charAt(i) - 'a']++;
             }
-            StringBuilder tempBuilder = new StringBuilder();
-            for (int i = 0; i < 26; i++) {
-                tempBuilder.append(alpha[i] + " ");
+            //add value of each index into a string to store in the map
+            StringBuilder sb = new StringBuilder();
+            for (int here : alpha) {
+                sb.append(here);
             }
-            String tempString = tempBuilder.toString();
-            if (!map.containsKey(tempString)) {
-                map.put(tempString, new ArrayList<String>());
+            ArrayList<String> temp;
+            //retrieve the value of the key
+            if(map.containsKey(sb.toString())) {
+                temp = map.get(sb.toString());
+            } else {
+                temp = new ArrayList<>();
             }
-            ArrayList<String> temp = map.get(tempString);
-            temp.add(here);
-            map.put(tempString, temp);
+            //add the current string to the value
+            temp.add(str);
+            //add the updated value to the key
+            map.put(sb.toString(), temp);
         }
+        //iterate through the map and add each value to the result
         for (Map.Entry<String, ArrayList<String>> entry : map.entrySet()) {
             result.add(entry.getValue());
         }

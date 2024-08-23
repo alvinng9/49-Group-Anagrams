@@ -14,8 +14,8 @@ public class SolutionTest {
     public void groupAnagramsTest() {
         Solution solution = new Solution();
         List<List<String>> output = new ArrayList<>();
-        output.add(new ArrayList<>(Arrays.asList("tan","nat")));
         output.add(new ArrayList<>(Arrays.asList("bat")));
+        output.add(new ArrayList<>(Arrays.asList("tan","nat")));
         output.add(new ArrayList<>(Arrays.asList("eat","tea","ate")));
         assertEquals(output, solution.groupAnagrams(new String[]{"eat","tea","tan","ate","nat","bat"}));
         output = new ArrayList<>();
